@@ -1,0 +1,59 @@
+input[class="form-control-advance"]{
+ height: 40px;
+}
+ select[class="form-control-advance"]{
+ height: 40px;
+ }
+ .filter{
+     background-color: rgba(0, 0, 0, 0.2);
+ }
+
+  .but{
+    height: 40px;
+  }
+  #menu{
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+  }
+
+  .banner-form{
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+  .card-photo{
+      height: 200px;
+      width: 100%;
+  }
+  .carte{
+    background-color:white;
+    box-shadow: 1px 1px 40px 1px rgb(196, 196, 196);
+  }
+.ribon{
+    position: absolute;
+    right: 19px;
+    text-transform: uppercase;
+    padding: 3px 15px;
+    font-weight: 580;
+    top: 18px;
+}
+.ribon::after{
+    position: absolute;
+    right: 0;
+    bottom: -5px;
+    border-top: 5px solid #00887c;
+    width: 5px;
+    content: " ";
+    display: block;
+    border-right: 5px solid #f6f6f6;
+}
+.acc-bt-plus{
+    text-decoration: none;
+    border:1px solid black;
+    color: black;
+    font-size: 23px;
+    width: 150px;
+}
+.acc-bt-plus:hover{
+    border:1px solid green;
+    color: green;
+    text-decoration: none;
+}
