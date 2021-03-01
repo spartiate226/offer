@@ -81,9 +81,26 @@
         </header>
         @yield('content')
         <footer>
-            <section></section>
-            <section></section>
-            <section></section>
+            <div class="row m-0">
+            <section class="col-md-4">
+                <div class="">
+                    <h4>Menu</h4>
+                    <ul class="">
+                        <li class="list-unstyled">Offres publics</li>
+                        <li class="list-unstyled">Offres privés</li>
+                        <li class="list-unstyled">Abonnements</li>
+                    </ul>
+                </div>
+                <div class="">
+                    <h4>A propos</h4>
+                    <p>
+                        
+                    </p>
+                </div>
+            </section>
+            <section class="col-md-4"></section>
+            <section class="col-md-4"></section>
+            </div>
         </footer>
 
     <script src="{{asset('front/js/jquery.min.js')}}"></script>
