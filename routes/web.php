@@ -16,3 +16,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('frontoffice.index');
 });
+Route::get('offres', function () {
+    return view('frontoffice.offresListe');
+});
+Route::post('Offre/search', 'offreController@search');
+Route::any('admin/{page}','AdminController')->middleware('AuthMiddleware');
+Route::get('connexion','AuthController@loginForm');
+Route::post('connexion','AuthController@login');
+Route::get('deconnexion','AuthController@logout');
+Route::resource('User', 'UserController');
+Route::resource('Offre', 'offreController');

@@ -8,32 +8,29 @@
     <link rel="stylesheet" href="{{asset('front/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('front/css/style.css')}}">
     <body class="h-100">
-        <header class="h-100">
+        <header class="h-md-100">
             <div>
 
             </div>
-            <div class="h-md-100 mb-5" style="background-image: url({{asset('images/header-image.jpg')}})">
-                <div class="h-md-100 filter p-3">
-                    <div class="w-100 mb-5" id="menu">
+            <div class="h-md-100 " style="background-image: url({{asset('images/header-image.jpg')}})">
+                <div class="h-md-100 filter">
+                    <div class="w-100 " id="menu">
                         <nav class="navbar navbar-expand-lg navbar-light ">
                             <div class="container-fluid">
-                              <a class="navbar-brand text-light" href="#">Offer</a>
+                              <a class="navbar-brand text-light" href="{{url('/')}}">OFFER</a>
                               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                                 <span class="navbar-toggler-icon"></span>
                               </button>
                               <div class="collapse navbar-collapse" id="navbarNav">
                                 <ul class="navbar-nav">
                                   <li class="nav-item">
+                                    <a href="{{url('offres')}}" class="nav-link text-light" href="#">Offres</a>
+                                  </li>
+                                  <li class="nav-item">
+                                    <a class="nav-link text-light" href="#">Abonnements</a>
+                                  </li>
+                                  <li class="nav-item">
                                     <a class="nav-link active text-light" aria-current="page" href="#">A propos</a>
-                                  </li>
-                                  <li class="nav-item">
-                                    <a class="nav-link text-light" href="#">Offres privés</a>
-                                  </li>
-                                  <li class="nav-item">
-                                    <a class="nav-link text-light" href="#">Offres publics</a>
-                                  </li>
-                                  <li class="nav-item">
-                                    <a class="nav-link text-light" href="#">Tarifs</a>
                                   </li>
                                   <li class="nav-item">
                                     <a class="nav-link text-light" href="#">Contact</a>
@@ -43,63 +40,92 @@
                             </div>
                           </nav>
                     </div>
-                    <div class="row m-0">
+                    @if($affiche==true)
+                    <div id="di" class="row mt-5 mb-0 ml-0 mr-0">
                         <section class="col-md-6 p-2">
                             <h1 class="text-left ml-4 mt-5 text-light" style="font-size:6vw">Les Appels d'offre plus proches de vous!!</h1>
                             <a style="font-size:2vw" class="btn btn-success ml-4 mt-5">Commencer</a>
                         </section>
-                        <section class="col-md-6 p-2 row m-0">
-                            <form class="col-md-6 d-flex ml-md-3 banner-form mt-5 p-2 flex-column justify-content-between">
-                                <label class="text-light">Mot à rechercher</label>
-                                <input class="form-control-advance" type="text">
+                        <section class="col-md-6 h-sm-100 p-2 row m-0">
+                        <form action="{{url('Offre/search')}}" method="POST" class="col-md-6 d-flex ml-md-3 banner-form mt-5 p-2 flex-column justify-content-between">
+                            @csrf
+
                                 <label class="text-light">Categorie</label>
                                 <select class="form-control-advance">
-                                    <option>Categorie</option>
+                                    @foreach (categorie() as $item)
+                                      <option value="{{$item->id}}">{{$item->nom}}</option>
+                                    @endforeach
                                 </select>
                                 <label class="text-light">Secteur d'activité</label>
                                 <select class="form-control-advance">
-                                    <option>Secteur d'activité</option>
+                                    @foreach (secteur() as $item)
+                                      <option value="{{$item->id}}">{{$item->nom}}</option>
+                                    @endforeach
                                 </select>
                                 <label class="text-light">Structure</label>
                                 <select class="form-control-advance">
-                                    <option>Structure</option>
+                                    @foreach (structure() as $item)
+                                      <option value="{{$item->id}}">{{$item->nom}}</option>
+                                    @endforeach
                                 </select>
                                 <label class="text-light">Domaine</label>
                                 <select class="form-control-advance">
-                                    <option>Domaine</option>
+                                    @foreach (domaine() as $item)
+                                      <option value="{{$item->id}}">{{$item->nom}}</option>
+                                    @endforeach
                                 </select>
                                 <label class="text-light">Localité</label>
                                 <select class="form-control-advance">
-                                    <option>Localité</option>
+                                    @foreach (localite() as $item)
+                                      <option value="{{$item->id}}">{{$item->nom}}</option>
+                                    @endforeach
                                 </select>
-                                <button class="but bg-success">Rechercher</button>
+                                <button type="submit" class="but bg-success mt-1">Rechercher</button>
                             </form>
                         </section>
                     </div>
+                    @endif
                 </div>
             </div>
         </header>
         @yield('content')
-        <footer>
-            <div class="row m-0">
-            <section class="col-md-4">
-                <div class="">
-                    <h4>Menu</h4>
-                    <ul class="">
-                        <li class="list-unstyled">Offres publics</li>
-                        <li class="list-unstyled">Offres privés</li>
-                        <li class="list-unstyled">Abonnements</li>
-                    </ul>
-                </div>
-                <div class="">
-                    <h4>A propos</h4>
-                    <p>
-                        
-                    </p>
-                </div>
-            </section>
-            <section class="col-md-4"></section>
-            <section class="col-md-4"></section>
+        <footer class="mt-3 bg-success ">
+            <div class="row m-0 justify-content-center p-2">
+                <section class="col-md-4">
+                    <div class="">
+                        <h4 class="m-1 text-center text-light"><b>A propos</b></h4>
+                        <p class="text-light text-justify">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam soluta, reprehenderit eum illo, dolorem ut dolore error
+                             impedit qui laboriosam voluptatibus sequi repudiandae totam voluptate sapiente dolores aliquid a magnam.
+                        </p>
+                        <p class="text-light text-justify">
+                            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laborum odio pariatur autem architecto, ipsum vero esse numquam cupiditate
+                            officia eligendi voluptate, aperiam libero? Aut debitis voluptates consequuntur distinctio numquam nihil.
+                        </p>
+                    </div>
+                </section>
+                <section class="col-md-4 d-flex justify-content-center">
+                    <div class="">
+                        <h4 class="text-center m-1 text-light"><b>Menu</b></h4>
+                        <ul class="p-0">
+                            <li class="list-unstyled mt-3"><a style="text-decoration: none;color:white" href="">Offres publics</a></li>
+                            <li class="list-unstyled mt-3"><a style="text-decoration: none;color:white" href="">Offres privés</a></li>
+                            <li class="list-unstyled mt-3"><a style="text-decoration: none;color:white" href="">Abonnements</a></li>
+                        </ul>
+                    </div>
+                </section>
+                <section class="col-md-4">
+                    <div>
+                        <h4 class="text-center m-1 text-light"><b>Newletter</b></h4>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Email">
+                        <button class="mt-1 btn btn-light text-success">S'inscrire</button>
+                    </div>
+                </section>
+            </div>
+            <div class="text-center p-2 border-top">
+                Copyright {{date('Y')}}<span><b><a href="">ADV Technologie</a></b></span>
             </div>
         </footer>
 

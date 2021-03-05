@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSectActivitesTable extends Migration
+class CreateSecteursTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class CreateSectActivitesTable extends Migration
      */
     public function up()
     {
-        Schema::create('sect-activites', function (Blueprint $table) {
+        Schema::create('secteurs', function (Blueprint $table) {
             $table->id();
+            $table->string('nom');
             $table->timestamps();
         });
     }
@@ -26,6 +27,6 @@ class CreateSectActivitesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sect-activites');
+        Schema::dropIfExists('secteurs');
     }
 }
